@@ -13,12 +13,15 @@ certifi==2025.1.31
 cffi==1.17.1
 charset-normalizer==3.4.1
 comm==0.2.2
+contourpy==1.3.0
+cycler==0.12.1
 debugpy==1.8.13
 decorator==5.2.1
 defusedxml==0.7.1
 exceptiongroup==1.2.2
 executing==2.2.0
 fastjsonschema==2.21.1
+fonttools==4.57.0
 fqdn==1.5.1
 geographiclib==2.0
 geopandas==1.0.1
@@ -28,6 +31,7 @@ httpcore==1.0.7
 httpx==0.28.1
 idna==3.10
 importlib_metadata==8.6.1
+importlib_resources==6.5.2
 ipykernel==6.29.5
 ipython==8.18.1
 ipywidgets==8.1.5
@@ -51,7 +55,9 @@ jupyterlab==4.3.6
 jupyterlab_pygments==0.3.0
 jupyterlab_server==2.27.3
 jupyterlab_widgets==3.0.13
+kiwisolver==1.4.7
 MarkupSafe==3.0.2
+matplotlib==3.9.4
 matplotlib-inline==0.1.7
 mistune==3.1.3
 nbclient==0.10.2
@@ -67,6 +73,7 @@ pandas==2.2.3
 pandocfilters==1.5.1
 parso==0.8.4
 pexpect==4.9.0
+pillow==11.1.0
 platformdirs==4.3.7
 prometheus_client==0.21.1
 prompt_toolkit==3.0.50
@@ -75,7 +82,9 @@ ptyprocess==0.7.0
 pure_eval==0.2.3
 pycparser==2.22
 Pygments==2.19.1
+pymcdm==1.2.0
 pyogrio==0.10.0
+pyparsing==3.2.3
 pyproj==3.6.1
 python-dateutil==2.9.0.post0
 python-json-logger==3.3.0
@@ -95,6 +104,7 @@ six==1.17.0
 sniffio==1.3.1
 soupsieve==2.6
 stack-data==0.6.3
+tabulate==0.9.0
 terminado==0.18.1
 threadpoolctl==3.6.0
 tinycss2==1.4.0
