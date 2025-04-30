@@ -21,19 +21,18 @@ def parse_neighborhood_url_mapping(neighborhood_url_mapping):
     all_neighborhoods = ','.join(all_neighborhoods).replace('-',' ').split(',')
 
     all_urls = list(neighborhood_url_mapping.values())
-    return all_neighborhoods, all_urls
 
     return all_neighborhoods, all_urls
 
 def search_asknyc(neighborhood_url_mapping):
     reddit = create_praw()
-    subreddit = reddit.subreddit("asknyc")
+    subreddit = reddit.subreddit("askNYC")
 
     neighborhoods, urls = parse_neighborhood_url_mapping(neighborhood_url_mapping)
 
     for index, neighborhood in enumerate(neighborhoods):
         comments = []
-        query = f"how is living in {neighborhood}"
+        query = f"how is living in {' '.join(neighborhood.split('-'))} nyc"
         search_results = subreddit.search(query, sort="relevance", limit=1)
         post = next(search_results, None)
 

@@ -1,6 +1,7 @@
 import re
 import json
 import geopy
+import collections
 from geopy.geocoders import Nominatim
 from geopy.extra.rate_limiter import RateLimiter
 from streeteasy_helper.query_streeteasy import create_possible_areas
@@ -58,24 +59,35 @@ def create_zip_to_neighborhood():
 
     return zip_to_neighborhood_mapping
 
-def get_all_neighborhoods_from_listings(listings, zip_to_neighborhood_mapping):
+def get_all_neighborhoods_from_listings(user_selected_neighborhoods_bool: bool, selected_neighborhoods: list, listings: list, zip_to_neighborhood_mapping: dict):
     geolocator = geopy.Nominatim(user_agent="zipcode-mapping")
     reverse = RateLimiter(geolocator.reverse, min_delay_seconds=3)
 
-    zipcode_url_mapping = {}
+    zipcode_url_mapping = collections.defaultdict(list)
     # map zipcode to url w/ geolocator
     for entry in listings:
         location = geolocator.reverse((entry['latitude'], entry['longitude']))
         if 'address' in location.raw.keys():
             if 'postcode' in location.raw['address'].keys():
-                zipcode_url_mapping[(int(location.raw['address']['postcode']))] = entry['url']
+                zipcode_url_mapping[(int(location.raw['address']['postcode']))].append(entry['url'])
 
 
-    neighborhood_url_mapping = {}
-    for zipcode, url in zipcode_url_mapping.items():
+    neighborhood_url_mapping = collections.defaultdict(list)
+    for zipcode, urls in zipcode_url_mapping.items():
         possible_neighborhoods = zip_to_neighborhood_mapping.get(zipcode, [])[0].split(',')
         for neighborhood in possible_neighborhoods:
-            neighborhood_url_mapping[neighborhood] = url
+            if user_selected_neighborhoods_bool and neighborhood not in selected_neighborhoods:
+                continue
+            neighborhood_url_mapping[neighborhood].extend(urls)
 
     return neighborhood_url_mapping
+
+def read_in_neighborhoods():
+    try:
+        with open('neighborhoods.json', 'r') as file:
+            borough_separated_neighborhoods = list(json.load(file).values())
+            return [neighborhood for neighborhoods in borough_separated_neighborhoods for neighborhood in neighborhoods]
+    except FileNotFoundError as e:
+        print(e)
+        print("neighborhoods.json not found")
                 
