@@ -9,7 +9,9 @@ Final Project for Notre Dame AI and Society (CSE 40171 - Spring 2025)
 
 # Documentation
 
-Our NYC housing finder allows individuals to find the perfect rental unit based on their needs. We utilizes a wide variety of technologies. First, we pre-processed a NYC government crime dataset that measured varying crimes and the busyness of varying zipcodes. These two metrics allowed us to better understand the underlying nature of a specific NYC neighborhood (in any of the 5 boroughs!). We then asked our users to decide their preferences (which one they care about most). Users can choose from safety, price, and livability (busyness). 
+Our NYC housing finder allows individuals to find the perfect rental unit based on their needs. Leveraging a range of technologies, we start by preprocessing public datasets from the NYC government—including crime statistics and available services—to assess the safety and livability of each ZIP code across all five boroughs.
+
+For every ZIP code, we analyzed the frequency of various crime types alongside the availability of stores and services. Using the TOPSIS multi-criteria decision-making method, we generate comprehensive rankings for both safety and livability. These rankings help us capture a glimpse of the nature and environment of each neighborhood/zipcode (in any of the 5 boroughs!). We then asked our users to decide their preferences (which one they care about most). Users can choose from safety, price, and livability (busyness). 
 
 Then, we ask our user what their estimated price range would be, and also how many individuals will be living in this rental unit. Further implementation would be to add more specific measures such as proximity to work, number of bathrooms, pet-friendly, etc. After this, each neighborhood/zipcode is assigned a composite score (lowest score wins, similar to golf!)
 
